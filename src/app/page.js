@@ -226,7 +226,7 @@ export default function Home() {
               margin: '0.25rem 0 0 0',
               textTransform: 'uppercase'
             }}>
-              Oficinas US / MX — Quiniela Mundialista
+              Quiniela Mundialista
             </p>
           </div>
         </div>
