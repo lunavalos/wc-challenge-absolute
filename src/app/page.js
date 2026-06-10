@@ -252,7 +252,7 @@ export default function Home() {
               Registra tus Predicciones
             </h2>
             <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', marginTop: '0.25rem' }}>
-              Rellena tu quiniela y genera la tarjeta coleccionable.
+              Rellena tu quiniela y descarga la imagen.
             </p>
           </div>
 
@@ -436,7 +436,7 @@ export default function Home() {
         <section style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', position: 'sticky', top: '2rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <h3 style={{ fontSize: '1rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-text-secondary)' }}>
-              Vista Previa en Tiempo Real
+              Vista Previa
             </h3>
           </div>
 
