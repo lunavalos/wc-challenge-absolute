@@ -6,7 +6,7 @@ import { toPng } from 'html-to-image';
 
 export default function Home() {
   const [fullName, setFullName] = useState('');
-  
+
   // Predictions state
   const [champion, setChampion] = useState('');
   const [championCode, setChampionCode] = useState('');
@@ -14,7 +14,7 @@ export default function Home() {
   const [runnerUpCode, setRunnerUpCode] = useState('');
   const [thirdPlace, setThirdPlace] = useState('');
   const [thirdPlaceCode, setThirdPlaceCode] = useState('');
-  
+
   const [team1Score, setTeam1Score] = useState('');
   const [team2Score, setTeam2Score] = useState('');
   const [topScorer, setTopScorer] = useState('');
@@ -34,13 +34,13 @@ export default function Home() {
 
   // Form submission and download states
   const [toast, setToast] = useState(null);
-  
+
   const ticketRef = useRef(null);
 
   // Filter country autocomplete suggestions
   const filterCountries = (query) => {
     if (!query) return [];
-    return countries.filter(c => 
+    return countries.filter(c =>
       c.name.toLowerCase().includes(query.toLowerCase())
     );
   };
@@ -157,7 +157,7 @@ export default function Home() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      
+
       {/* Toast Alert */}
       {toast && (
         <div className={`alert-toast ${toast.type === 'error' ? 'alert-toast-error' : ''}`}>
@@ -169,7 +169,7 @@ export default function Home() {
       {/* Hero Header */}
       <header style={{ padding: '2.5rem 1.5rem', textAlign: 'center', position: 'relative' }}>
         <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
-          
+
           {/* Circular Absolute Group logo placeholder */}
           <div style={{
             width: '90px',
@@ -244,7 +244,7 @@ export default function Home() {
         gap: '2.5rem',
         alignItems: 'start'
       }}>
-        
+
         {/* Left column: prediction Form */}
         <section className="glass-panel" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           <div className="glass-card-header">
@@ -257,7 +257,7 @@ export default function Home() {
           </div>
 
           <form onSubmit={(e) => e.preventDefault()} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }} onClick={(e) => e.stopPropagation()}>
-            
+
             {/* Full name */}
             <div className="form-group">
               <label className="form-label" htmlFor="fullName">Nombre Completo</label>
@@ -265,7 +265,7 @@ export default function Home() {
                 id="fullName"
                 type="text"
                 className="form-input"
-                placeholder="Ej. Hugo Luna"
+                placeholder="Ej. Juan Pérez"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 required
@@ -295,12 +295,12 @@ export default function Home() {
                       className="autocomplete-option"
                       onClick={() => selectChampion(country)}
                     >
-                      <img 
-                        src={`https://flagcdn.com/w40/${country.code}.png`} 
-                        width="20" 
-                        height="15" 
-                        alt={country.name} 
-                        crossOrigin="anonymous" 
+                      <img
+                        src={`https://flagcdn.com/w40/${country.code}.png`}
+                        width="20"
+                        height="15"
+                        alt={country.name}
+                        crossOrigin="anonymous"
                       />
                       <span>{country.name}</span>
                     </div>
@@ -332,12 +332,12 @@ export default function Home() {
                       className="autocomplete-option"
                       onClick={() => selectRunnerUp(country)}
                     >
-                      <img 
-                        src={`https://flagcdn.com/w40/${country.code}.png`} 
-                        width="20" 
-                        height="15" 
-                        alt={country.name} 
-                        crossOrigin="anonymous" 
+                      <img
+                        src={`https://flagcdn.com/w40/${country.code}.png`}
+                        width="20"
+                        height="15"
+                        alt={country.name}
+                        crossOrigin="anonymous"
                       />
                       <span>{country.name}</span>
                     </div>
@@ -369,12 +369,12 @@ export default function Home() {
                       className="autocomplete-option"
                       onClick={() => selectThirdPlace(country)}
                     >
-                      <img 
-                        src={`https://flagcdn.com/w40/${country.code}.png`} 
-                        width="20" 
-                        height="15" 
-                        alt={country.name} 
-                        crossOrigin="anonymous" 
+                      <img
+                        src={`https://flagcdn.com/w40/${country.code}.png`}
+                        width="20"
+                        height="15"
+                        alt={country.name}
+                        crossOrigin="anonymous"
                       />
                       <span>{country.name}</span>
                     </div>
@@ -410,7 +410,7 @@ export default function Home() {
                     required
                   />
                 </div>
-                
+
               </div>
             </div>
 
@@ -441,10 +441,10 @@ export default function Home() {
           </div>
 
           {/* Ruled Notebook Paper Container */}
-          <div 
-            ref={ticketRef} 
-            className="notebook-paper" 
-            style={{ 
+          <div
+            ref={ticketRef}
+            className="notebook-paper"
+            style={{
               transform: 'rotate(0.5deg)',
               minHeight: '420px'
             }}
@@ -481,11 +481,11 @@ export default function Home() {
                     <>
                       {champion}
                       {championCode && (
-                        <img 
-                          src={`https://flagcdn.com/w40/${championCode}.png`} 
-                          width="24" 
-                          height="18" 
-                          alt="" 
+                        <img
+                          src={`https://flagcdn.com/w40/${championCode}.png`}
+                          width="24"
+                          height="18"
+                          alt=""
                           style={{ border: '1px solid rgba(0,0,0,0.15)' }}
                           crossOrigin="anonymous"
                         />
@@ -502,11 +502,11 @@ export default function Home() {
                     <>
                       {runnerUp}
                       {runnerUpCode && (
-                        <img 
-                          src={`https://flagcdn.com/w40/${runnerUpCode}.png`} 
-                          width="24" 
-                          height="18" 
-                          alt="" 
+                        <img
+                          src={`https://flagcdn.com/w40/${runnerUpCode}.png`}
+                          width="24"
+                          height="18"
+                          alt=""
                           style={{ border: '1px solid rgba(0,0,0,0.15)' }}
                           crossOrigin="anonymous"
                         />
@@ -523,11 +523,11 @@ export default function Home() {
                     <>
                       {thirdPlace}
                       {thirdPlaceCode && (
-                        <img 
-                          src={`https://flagcdn.com/w40/${thirdPlaceCode}.png`} 
-                          width="24" 
-                          height="18" 
-                          alt="" 
+                        <img
+                          src={`https://flagcdn.com/w40/${thirdPlaceCode}.png`}
+                          width="24"
+                          height="18"
+                          alt=""
                           style={{ border: '1px solid rgba(0,0,0,0.15)' }}
                           crossOrigin="anonymous"
                         />
