@@ -33,7 +33,6 @@ export default function Home() {
   const [showThirdPlaceSuggestions, setShowThirdPlaceSuggestions] = useState(false);
 
   // Form submission and download states
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [toast, setToast] = useState(null);
   
   const ticketRef = useRef(null);
@@ -154,60 +153,7 @@ export default function Home() {
     triggerToast('¡Imagen descargada con éxito!');
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!fullName || !champion || !runnerUp || !thirdPlace || !team1Score || !team2Score || !topScorer) {
-      triggerToast('Por favor completa todos los campos requeridos.', 'error');
-      return;
-    }
 
-    setIsSubmitting(true);
-    try {
-      // 1. Generate PNG of the ticket to send as attachment
-      const imageData = await generateTicketImage();
-      if (!imageData) {
-        setIsSubmitting(false);
-        return;
-      }
-
-      // 2. Prepare payload
-      const finalScore = `${team1Score} - ${team2Score}`;
-      const payload = {
-        fullName,
-        champion,
-        runnerUp,
-        thirdPlace,
-        finalScore,
-        topScorer,
-        imageData
-      };
-
-      // 3. Send to API route
-      const response = await fetch('/api/predict', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        if (result.simulated) {
-          triggerToast('Predicción registrada localmente (consola). SMTP no configurado.');
-        } else {
-          triggerToast('¡Tus predicciones han sido enviadas correctamente por correo!');
-        }
-        // Keep inputs but show success state if needed
-      } else {
-        triggerToast(result.error || 'Error al enviar la predicción.', 'error');
-      }
-    } catch (error) {
-      console.error('Submit error:', error);
-      triggerToast('Ocurrió un error al enviar el formulario.', 'error');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -310,7 +256,7 @@ export default function Home() {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }} onClick={(e) => e.stopPropagation()}>
+          <form onSubmit={(e) => e.preventDefault()} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }} onClick={(e) => e.stopPropagation()}>
             
             {/* Full name */}
             <div className="form-group">
@@ -482,20 +428,7 @@ export default function Home() {
               />
             </div>
 
-            <button
-              type="submit"
-              className="btn btn-primary"
-              disabled={isSubmitting}
-              style={{ marginTop: '0.5rem' }}
-            >
-              {isSubmitting ? (
-                <>
-                  <span className="animate-pulse-slow">Enviando Predicción...</span>
-                </>
-              ) : (
-                'Enviar Predicción por Correo'
-              )}
-            </button>
+
           </form>
         </section>
 
@@ -624,7 +557,7 @@ export default function Home() {
           <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
             <button
               onClick={handleDownload}
-              className="btn btn-secondary"
+              className="btn btn-primary"
               type="button"
             >
               📥 Descargar Imagen
